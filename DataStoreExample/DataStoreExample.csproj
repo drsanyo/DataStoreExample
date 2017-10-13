@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\UserRepositoryBase.cs" />
-    <Compile Include="Common\CryptoRandom.cs" />
+    <Compile Include="Common\RandomGenerator.cs" />
     <Compile Include="BusinessLogic\UserRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

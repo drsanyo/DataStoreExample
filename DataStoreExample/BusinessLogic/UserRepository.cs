@@ -11,11 +11,11 @@ namespace DataStoreExample.BusinessLogic
     public class UserRepository: UserRepositoryBase
     {        
         private readonly string _separator = ";";
-        private CryptoRandom randomGenerator;
+        private RandomGenerator randomGenerator;
 
         public UserRepository()
         {
-            randomGenerator = new CryptoRandom();
+            randomGenerator = new RandomGenerator();
         }
         
         public int SaveAllUsers(List<User> users, string fileName, bool performSlowSaving = false)
