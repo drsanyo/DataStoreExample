@@ -8,14 +8,14 @@ using System.Collections.Generic;
 namespace DataStoreExample.Tests
 {
     [TestClass]
-    public class UserRepositoryTXTTests
+    public class UserRepositoryBINTests
     {
         [TestMethod]
         public void SaveAllUsers_should_create_non_0_length_file()
         {
             // arrange
-            string fileName = Path.Combine(Initializer.ResultFolder, @"test.txt");
-            UserRepositoryTXT userRepository = new UserRepositoryTXT();
+            string fileName = Path.Combine(Initializer.ResultFolder, @"test.bin");
+            IUserRepository userRepository = new UserRepositoryBIN();
             int userCount = 100000;
             int savedCount = 0;
 
@@ -23,7 +23,6 @@ namespace DataStoreExample.Tests
             var users = userRepository.GenerateUserList(userCount);
             savedCount = userRepository.SaveAllUsers(users, fileName);
             
-
             // assert
             Assert.AreEqual(userCount, savedCount);
             Assert.IsTrue(File.Exists(fileName));
@@ -34,8 +33,8 @@ namespace DataStoreExample.Tests
         public void LoadAllUsers_should_load_test_users()
         {
             // arrange
-            string fileName = Path.Combine(Initializer.ResultFolder, @"testUsers.txt");
-            UserRepositoryTXT userRepository = new UserRepositoryTXT();
+            string fileName = Path.Combine(Initializer.ResultFolder, @"testUsers.bin");
+            IUserRepository userRepository = new UserRepositoryBIN();
             var users = userRepository.GetTestUsers();
             userRepository.SaveAllUsers(users, fileName);
             users.Clear();

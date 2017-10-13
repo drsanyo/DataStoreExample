@@ -10,28 +10,11 @@ namespace DataStoreExample.Tests
     [TestClass]
     public class UserRepositoryXMLTests
     {
-        private string _resultFolder = "TestsResult";
-        [TestInitialize()]
-        public void Initialize()
-        {
-            try
-            {
-                if (!Directory.Exists(_resultFolder))
-                {
-                    Directory.CreateDirectory(_resultFolder);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(string.Format("Cannot create folder ({0})", _resultFolder), ex);
-            }
-        }
-
         [TestMethod]
         public void SaveAllUsers_should_create_non_0_length_file()
         {
             // arrange
-            string fileName = Path.Combine(_resultFolder, @"test.xml");
+            string fileName = Path.Combine(Initializer.ResultFolder, @"test.xml");
             IUserRepository userRepository = new UserRepositoryXML();
             int userCount = 10000;
             int savedCount = 0;
@@ -50,7 +33,7 @@ namespace DataStoreExample.Tests
         public void LoadAllUsers_should_load_test_users()
         {
             // arrange
-            string fileName = Path.Combine(_resultFolder, @"testUsers.xml");
+            string fileName = Path.Combine(Initializer.ResultFolder, @"testUsers.xml");
             IUserRepository userRepository = new UserRepositoryXML();
             var users = userRepository.GetTestUsers();
             userRepository.SaveAllUsers(users, fileName);

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\IUserRepository.cs" />
     <Compile Include="BusinessLogic\UserRepositoryBase.cs" />
+    <Compile Include="BusinessLogic\UserRepositoryBIN.cs" />
     <Compile Include="BusinessLogic\UserRepositoryXML.cs" />
     <Compile Include="Common\RandomGenerator.cs" />
     <Compile Include="BusinessLogic\UserRepositoryTXT.cs" />
