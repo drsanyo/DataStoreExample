@@ -39,7 +39,7 @@ namespace DataStoreExample.Tests
 
             // act
             var users = userRepository.GenerateUserList(userCount);
-            savedCount = userRepository.SaveAllUsers(users, fileName, true);
+            savedCount = userRepository.SaveAllUsers(users, fileName);
             
 
             // assert
@@ -55,7 +55,7 @@ namespace DataStoreExample.Tests
             string fileName = Path.Combine(_resultFolder, @"testUsers.txt");
             UserRepositoryTXT userRepository = new UserRepositoryTXT();
             var users = userRepository.GetTestUsers();
-            userRepository.SaveAllUsers(users, fileName, true);
+            userRepository.SaveAllUsers(users, fileName);
             users.Clear();
 
             // act            

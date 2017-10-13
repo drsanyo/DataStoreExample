@@ -56,18 +56,5 @@ namespace DataStoreExample.BusinessLogic
             }
             return users;
         }
-
-        protected int uDelay(long delay)
-        {
-            int result = 0;
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            long v = (delay * System.Diagnostics.Stopwatch.Frequency) / 1000000;
-            while (stopwatch.ElapsedTicks < v)
-            {
-                result++;
-            }
-            return result;
-        }
-
     }
 }

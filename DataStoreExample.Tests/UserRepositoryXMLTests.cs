@@ -33,14 +33,13 @@ namespace DataStoreExample.Tests
             // arrange
             string fileName = Path.Combine(_resultFolder, @"test.xml");
             IUserRepository userRepository = new UserRepositoryXML();
-            int userCount = 10;
+            int userCount = 10000;
             int savedCount = 0;
 
             // act
             var users = userRepository.GenerateUserList(userCount);
-            savedCount = userRepository.SaveAllUsers(users, fileName, true);
+            savedCount = userRepository.SaveAllUsers(users, fileName);
             
-
             // assert
             Assert.AreEqual(userCount, savedCount);
             Assert.IsTrue(File.Exists(fileName));
@@ -54,7 +53,7 @@ namespace DataStoreExample.Tests
             string fileName = Path.Combine(_resultFolder, @"testUsers.xml");
             IUserRepository userRepository = new UserRepositoryXML();
             var users = userRepository.GetTestUsers();
-            userRepository.SaveAllUsers(users, fileName, true);
+            userRepository.SaveAllUsers(users, fileName);
             users.Clear();
 
             // act            

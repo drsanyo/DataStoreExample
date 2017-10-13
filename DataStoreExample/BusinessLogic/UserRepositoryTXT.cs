@@ -12,7 +12,7 @@ namespace DataStoreExample.BusinessLogic
     {        
         private readonly string _separator = ";";
         
-        public int SaveAllUsers(List<User> users, string fileName, bool performSlowSaving = false)
+        public int SaveAllUsers(List<User> users, string fileName)
         {
             int result = 0;
 
@@ -24,10 +24,6 @@ namespace DataStoreExample.BusinessLogic
                     string line = string.Join(_separator, values);
                     file.WriteLine(line);
                     result++;
-                    if (performSlowSaving)
-                    {
-                        this.uDelay(30);
-                    }
                 }
             }
 

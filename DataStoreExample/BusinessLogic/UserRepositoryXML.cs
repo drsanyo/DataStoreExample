@@ -13,7 +13,7 @@ namespace DataStoreExample.BusinessLogic
 {
     public class UserRepositoryXML : UserRepositoryBase, IUserRepository
     {        
-        public int SaveAllUsers(List<User> users, string fileName, bool performSlowSaving = false)
+        public int SaveAllUsers(List<User> users, string fileName)
         {
             int result = 0;
 
