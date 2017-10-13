@@ -8,15 +8,9 @@ using System.Threading;
 
 namespace DataStoreExample.BusinessLogic
 {
-    public class UserRepository: UserRepositoryBase
+    public class UserRepositoryTXT: UserRepositoryBase
     {        
         private readonly string _separator = ";";
-        private RandomGenerator randomGenerator;
-
-        public UserRepository()
-        {
-            randomGenerator = new RandomGenerator();
-        }
         
         public int SaveAllUsers(List<User> users, string fileName, bool performSlowSaving = false)
         {
@@ -71,20 +65,6 @@ namespace DataStoreExample.BusinessLogic
                 throw;
             }
             return users;
-        }
-
-        public List<User> GenerateUserList(int userCount)
-        {
-            var r = RandomNumberGenerator.Create();
-            List<User> users = new List<User>();
-            for (int i = 0; i < userCount; i++)
-            {
-                User user = new User();
-                user.Age = randomGenerator.Next(99);
-                user.Name = Path.GetRandomFileName();
-                users.Add(user);
-            }
-            return users;
-        }        
+        }         
     }
 }

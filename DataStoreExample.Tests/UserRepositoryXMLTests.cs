@@ -8,31 +8,32 @@ using System.Collections.Generic;
 namespace DataStoreExample.Tests
 {
     [TestClass]
-    public class UserRepositoryTests
+    public class UserRepositoryXMLTests
     {
-        [TestMethod]
-        public void GenerateVeryLongUserList_should_generate_1000000_items()
+        private string _resultFolder = "TestsResult";
+        [TestInitialize()]
+        public void Initialize()
         {
-            // arrange
-            UserRepository userRepository = new UserRepository();
-            int userCount = 1000000;
-            List<User> userList;
-
-            // act
-            userList = userRepository.GenerateUserList(userCount);
-
-            // assert
-            Assert.IsNotNull(userList);
-            Assert.AreEqual(userCount, userList.Count);
+            try
+            {
+                if (!Directory.Exists(_resultFolder))
+                {
+                    Directory.CreateDirectory(_resultFolder);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("Cannot create folder ({0})", _resultFolder), ex);
+            }
         }
 
         [TestMethod]
         public void SaveAllUsers_should_create_non_0_length_file()
         {
             // arrange
-            string fileName = @"test.txt";
-            UserRepository userRepository = new UserRepository();
-            int userCount = 100000;
+            string fileName = Path.Combine(_resultFolder, @"test.xml");
+            IUserRepository userRepository = new UserRepositoryXML();
+            int userCount = 10;
             int savedCount = 0;
 
             // act
@@ -50,8 +51,8 @@ namespace DataStoreExample.Tests
         public void LoadAllUsers_should_load_test_users()
         {
             // arrange
-            string fileName = @"testUsers.txt";
-            UserRepository userRepository = new UserRepository();
+            string fileName = Path.Combine(_resultFolder, @"testUsers.xml");
+            IUserRepository userRepository = new UserRepositoryXML();
             var users = userRepository.GetTestUsers();
             userRepository.SaveAllUsers(users, fileName, true);
             users.Clear();
